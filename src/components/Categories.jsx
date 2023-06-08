@@ -1,8 +1,6 @@
 import CategoryItem from './CategoryItem'
 import categories from '../resources/categories.json'
 
-  
-
 
 const Categories = () => {
   return (
