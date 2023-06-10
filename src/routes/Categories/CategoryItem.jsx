@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import '../styles/categories.styles.scss'
+import '../../styles/categories.styles.scss';
 
 const CategoryItem = ({title, imageUrl}) => {
   return (

@@ -1,12 +1,22 @@
-import Categories from "./components/Categories"
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"
+import Home from "./routes/Home/Home"
+import Categories from "./routes/Categories/Categories"
+import SignIn from "./routes/SignIn/SignIn"
 
 
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Home/>}>
+      <Route index element={<Categories/>}/>
+      <Route path="sign-in" element={<SignIn />}/>
+    </Route>
+  )
+)
 
 const App = () => {
   return (
-    <div>
-      <Categories />
-    </div>
+    <RouterProvider router={router} />
   )
 }
 
