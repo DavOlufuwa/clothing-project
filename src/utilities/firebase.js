@@ -1,8 +1,10 @@
 import { initializeApp } from "firebase/app";
 // import googlesignin, redirectsignin, auth, googleauth
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
 // import firestore
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDG5KNDBGBWCcdldff8Rgg-R4Xei7OSUYk",
@@ -15,24 +17,33 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+// google provider
+const googleProvider = new GoogleAuthProvider();
 
-provider.setCustomParameters({
+
+
+
+
+googleProvider.setCustomParameters({
   prompt: "select_account"
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 export const db = getFirestore();
 
-// creating a user document after authentication
-export const createUserDocFromAuth = async (userAuth) => {
+// creating a user document after google signin authentication
+export const createUserDocFromAuth = async (userAuth, additionalInformation = {}) => {
+  if (!userAuth) return;
+
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapShot = await getDoc(userDocRef);
 
   // check if user doc/data already exists
   if (!userSnapShot.exists()) {
+    // if not, create the document and set it from the user auth into the collection
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -41,14 +52,18 @@ export const createUserDocFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
-        // ...userAuth
+        ...additionalInformation,
       })
     }catch(error) {
       console.log('error creating the user', error.message);
     }
   }
-  
   // if it does, return the user doc
   return userDocRef;
-  // if not, create the document and set it from the user auth into the collection
+}
+
+// function to create user doc from emaiil and password
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 }

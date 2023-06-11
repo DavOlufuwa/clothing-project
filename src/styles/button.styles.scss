@@ -10,11 +10,12 @@
   color: white;
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
-  font-weight: bolder;
+  font-weight: 400;
   border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  font-family: 'Oswald', sans-serif;
 
   &:hover {
     background-color: white;
