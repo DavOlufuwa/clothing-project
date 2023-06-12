@@ -8,11 +8,7 @@ import { signOutUser } from '../utilities/firebase';
 
 const Navigation = () => {
   
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
-
-
-  
+  const { currentUser} = useContext(UserContext);
   
   return (
     <div className="navigation">
@@ -36,6 +32,9 @@ const Navigation = () => {
         }
         <Link to="recovery" className='nav-link'>
           Recover Password
+        </Link>
+        <Link to="shop" className='nav-link'>
+          Shop
         </Link>
       </div> 
     </div>
