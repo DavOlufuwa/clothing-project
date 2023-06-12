@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 // import googlesignin, redirectsignin, auth, googleauth
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { sendPasswordResetEmail ,createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from "firebase/auth";
 // import firestore
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+
 
 
 
@@ -67,3 +68,15 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
 }
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+}
+
+
+// function to reset existing account password from email
+// export const sendAuthPasswordResetEmail = async (email) => {
+//   if (!email) return;
+//   return await sendPasswordResetEmail(auth, email);
+// }

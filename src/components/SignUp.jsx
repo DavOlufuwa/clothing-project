@@ -1,8 +1,9 @@
 import { useState } from "react";
-import FormInput from "../../components/FormInput";
-import {  createAuthUserWithEmailAndPassword, createUserDocFromAuth } from "../../utilities/firebase";
-import '../../styles/sign-up-form.styles.scss';
-import Button from "../../components/Button";
+import FormInput from "./FormInput";
+import {  createAuthUserWithEmailAndPassword, createUserDocFromAuth } from "../utilities/firebase";
+import '../styles/sign-up-form.styles.scss';
+import Button from "./Button";
+import { redirect } from "react-router-dom";
 const defaultFormFields = {
   displayName: '',
   email: '',
@@ -30,12 +31,7 @@ const SignUp = () => {
     setFormFields(defaultFormFields)
   }
 
-  const inputOptions = {
-    name:"",
-    type:"",
-    value:"",
-    onChange: handleChange
-  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if(password !== confirmPassword){
@@ -49,6 +45,8 @@ const SignUp = () => {
       await createUserDocFromAuth(user, {displayName});
 
       resetFormFields();
+
+      
 
     } catch (error) {
       if(error.code === "auth/email-already-in-use") {
@@ -64,7 +62,7 @@ const SignUp = () => {
   return (
     <div className="sign-up-container">
       <h2>Don't have an account?</h2>
-      <h1>Sign Up with your email and password</h1>
+      <span>Sign Up with your email and password</span>
       <form onSubmit={handleSubmit}>
         {/* display name, email, password, confirm password, all required */}
         
