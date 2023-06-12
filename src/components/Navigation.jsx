@@ -10,12 +10,7 @@ const Navigation = () => {
   
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  const signOutHandler = async () => {
-    await signOutUser();
 
-    setCurrentUser(null);
-    
-  }
 
   
   
@@ -29,7 +24,7 @@ const Navigation = () => {
       <div className="nav-links-container">
         {
           currentUser ? (
-            <span to="/" className='nav-link' onClick={signOutHandler}>
+            <span to="/" className='nav-link' onClick={signOutUser}>
               Sign Out
             </span>
           ) :

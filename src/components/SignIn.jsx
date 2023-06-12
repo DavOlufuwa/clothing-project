@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import {  useState } from "react";
+// import { UserContext } from "../context/UserContext";
 
 import { createUserDocFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../utilities/firebase";
 import Button from "./Button";
@@ -22,7 +22,7 @@ const SignIn = () => {
   const { email, password } = formFields;
 
   // importing contexts
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
 
   
   const signInWithGoogle = async () => {
@@ -40,7 +40,7 @@ const SignIn = () => {
     try {
       const response = await signInAuthUserWithEmailAndPassword(email, password);
       
-      setCurrentUser(response.user);
+      // setCurrentUser(response.user);
 
       resetFormFields()
 
