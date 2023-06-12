@@ -5,12 +5,18 @@ import { UserContext } from '../context/UserContext';
 import CrownLogo from '../resources/crown.svg';
 import '../styles/navigation.styles.scss';
 import { signOutUser } from '../utilities/firebase';
+import CartDropdown from './CartDropdown';
+import CartIcon from './CartIcon';
+
 
 const Navigation = () => {
   
   const { currentUser} = useContext(UserContext);
   
+  
+
   return (
+
     <div className="navigation">
       <Link to="/" className='logo-container'>
         <div>
@@ -36,7 +42,9 @@ const Navigation = () => {
         <Link to="shop" className='nav-link'>
           Shop
         </Link>
+        <CartIcon/>
       </div> 
+      <CartDropdown />
     </div>
   )
 }
