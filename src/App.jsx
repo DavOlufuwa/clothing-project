@@ -4,6 +4,7 @@ import Categories from "./routes/Categories/Categories"
 import Authentication from "./routes/Authentication/Authentication"
 import Recovery from "./routes/Recovery/Recovery"
 import Shop from "./routes/Shop/Shop"
+import Checkout from "./routes/Checkout/Checkout"
 
 
 const router = createBrowserRouter(
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
       <Route path="authentication" element={<Authentication />}/>
       <Route path="recovery" element={<Recovery />}/>
       <Route path="shop" element={<Shop />}/>
+      <Route path="checkout" element={<Checkout />}/>
     </Route>
   )
 )
