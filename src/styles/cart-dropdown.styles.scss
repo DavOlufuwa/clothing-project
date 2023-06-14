@@ -11,9 +11,17 @@
   right: 40px;
   z-index: 5;
 
+
   .empty-message {
     font-size: 18px;
     margin: 50px auto;
+  }
+
+  .empty-cart{
+    // center it absolutely
+    margin: 50% auto;
+    max-width: max-content;
+    font-size: 25px;
   }
 
   .cart-items {

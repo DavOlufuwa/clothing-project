@@ -19,28 +19,38 @@ const CartDropdown = () => {
     if(currentUser === null) {
       
       navigate("authentication");
-
       enqueueSnackbar("You must be logged in to checkout", {
         variant: "warning",
         autoHideDuration: 3000
       })
+      setIsCartOpen(false)
     }
     else{
       navigate("checkout");
+      setIsCartOpen(false)
     }
   }
 
-  const {isCartOpen, cartItems } = useContext(CartContext)
-  
+  const {isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext)
+
+  if (cartItems.length === 0) { return(
+    <div className='cart-dropdown-container' style={{display: isCartOpen ? 'block' : 'none'}}>
+      <div className='empty-cart'>
+        Your cart is empty
+      </div>
+    </div>
+    ) 
+  }
   return (
     <div className='cart-dropdown-container' style={{display: isCartOpen ? 'block' : 'none'}}>
       <div className='cart-items'>
         {
-          cartItems.map((item) => (
+          
+          cartItems && cartItems.map((item) => (
             <CartItem key={item.id} cartItem={item}/>
           ))
+          
         }
-      
       </div>
       <Button onClick={goToCheckOut}>Go to checkout</Button>
     </div>
