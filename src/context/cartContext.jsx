@@ -39,6 +39,7 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
 }
 
 const deleteCartItem = (cartItems, cartItemToRemove) => {
+  enqueueSnackbar(`${cartItemToRemove.name} has been removed from the  cart`, {variant: "error", autoHideDuration: 3000})
   return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
 }
 
@@ -49,6 +50,7 @@ export const CartContext = createContext({
   setCartItems: () => null,
   addItemToCart: () => {},
   totalQuantity: 0,
+  totalPrice: 0,
   removeItemFromCart: () => {},
   deleteItemFromCart: () => {},
   
@@ -58,15 +60,20 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState(0)
-  
-  
-  
-
- 
-  
+  const [totalPrice, setTotalPrice] = useState(0)
+    
   useEffect(() => {
     const newTotalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
     setTotalQuantity(newTotalQuantity)
+
+    
+  }, [cartItems])
+  
+  useEffect(() => {
+
+    const newTotalPrice = cartItems.reduce((total, cartItem) => total + cartItem.quantity * cartItem.price, 0)
+    setTotalPrice(newTotalPrice)
+    
   }, [cartItems])
 
 
@@ -82,6 +89,6 @@ export const CartProvider = ({ children }) => {
   }
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, isCartOpen, setIsCartOpen, addItemToCart , totalQuantity, removeItemFromCart, deleteItemFromCart}}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ cartItems, setCartItems, isCartOpen, setIsCartOpen, addItemToCart , totalQuantity, removeItemFromCart, deleteItemFromCart, totalPrice}}>{children}</CartContext.Provider>
   )
 }
