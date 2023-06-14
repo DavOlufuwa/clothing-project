@@ -4,7 +4,7 @@ import {  createAuthUserWithEmailAndPassword, createUserDocFromAuth } from "../u
 import '../styles/sign-up-form.styles.scss';
 import Button from "./Button";
 import { enqueueSnackbar } from "notistack";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { redirect } from "react-router-dom";
 // import { UserContext } from "../context/UserContext";
 const defaultFormFields = {

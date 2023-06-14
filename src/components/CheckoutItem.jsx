@@ -4,7 +4,7 @@ import { CartContext } from "../context/cartContext";
 const CheckoutItem = ({checkOutItem}) => {
   const {name, price, quantity, imageUrl} = checkOutItem 
 
-  const {addItemToCart, removeItemFromCart} = useContext(CartContext)
+  const {addItemToCart, removeItemFromCart, deleteItemFromCart} = useContext(CartContext)
 
   const totalPrice = price * quantity;
 
@@ -17,7 +17,7 @@ const CheckoutItem = ({checkOutItem}) => {
         <span onClick={() => addItemToCart(checkOutItem)}> Increment </span>
       </div>
       <div>{totalPrice}</div>
-      <button >remove</button>
+      <button onClick={() => deleteItemFromCart(checkOutItem)}>remove</button>
     </div>
   )
 }

@@ -27,11 +27,10 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
 
   // check if quantity is equal to 1, if it is remove that item from the cart
   if(existingCartItem.quantity === 1){
-
     enqueueSnackbar(`${cartItemToRemove.name} has been removed from the  cart`, {variant: "error", autoHideDuration: 3000})
-
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
   }
+
   // return back cartItems with matching cart item with reduced quantity
   return cartItems.map((cartItem) => cartItem.id === cartItemToRemove.id 
   ? {...cartItem, quantity: cartItem.quantity - 1}
@@ -39,7 +38,9 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
   )
 }
 
-
+const deleteCartItem = (cartItems, cartItemToRemove) => {
+  return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
+}
 
 export const CartContext = createContext({
   isCartOpen: false,
@@ -49,6 +50,7 @@ export const CartContext = createContext({
   addItemToCart: () => {},
   totalQuantity: 0,
   removeItemFromCart: () => {},
+  deleteItemFromCart: () => {},
   
 })
 
@@ -75,9 +77,11 @@ export const CartProvider = ({ children }) => {
     setCartItems(removeCartItem(cartItems, cartItemToRemove));
   }
 
-
+  const deleteItemFromCart = (cartItemToRemove) => {
+    setCartItems(deleteCartItem(cartItems, cartItemToRemove));
+  }
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, isCartOpen, setIsCartOpen, addItemToCart , totalQuantity, removeItemFromCart }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ cartItems, setCartItems, isCartOpen, setIsCartOpen, addItemToCart , totalQuantity, removeItemFromCart, deleteItemFromCart}}>{children}</CartContext.Provider>
   )
 }
