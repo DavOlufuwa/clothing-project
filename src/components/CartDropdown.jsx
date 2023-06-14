@@ -1,12 +1,35 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/cartContext';
 import '../styles/cart-dropdown.styles.scss';
 import Button from './Button';
 import CartItem from './CartItem';
+import { UserContext } from '../context/UserContext';
+import { enqueueSnackbar } from 'notistack';
 
 
 const CartDropdown = () => {
+
+  const navigate = useNavigate();
+  
+  const {currentUser} = useContext(UserContext)
+
+  const goToCheckOut = () => {
+    // check if there is no User
+    if(currentUser === null) {
+      
+      navigate("authentication");
+
+      enqueueSnackbar("You must be logged in to checkout", {
+        variant: "warning",
+        autoHideDuration: 3000
+      })
+    }
+    else{
+      navigate("checkout");
+    }
+  }
+
   const {isCartOpen, cartItems } = useContext(CartContext)
   
   return (
@@ -19,7 +42,7 @@ const CartDropdown = () => {
         }
       
       </div>
-      <Link to='checkout'><Button>Go to checkout</Button></Link>
+      <Button onClick={goToCheckOut}>Go to checkout</Button>
     </div>
   )
 }

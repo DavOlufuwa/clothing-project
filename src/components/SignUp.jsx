@@ -3,6 +3,8 @@ import FormInput from "./FormInput";
 import {  createAuthUserWithEmailAndPassword, createUserDocFromAuth } from "../utilities/firebase";
 import '../styles/sign-up-form.styles.scss';
 import Button from "./Button";
+import { enqueueSnackbar } from "notistack";
+import { redirect, useNavigate } from "react-router-dom";
 // import { redirect } from "react-router-dom";
 // import { UserContext } from "../context/UserContext";
 const defaultFormFields = {
@@ -15,6 +17,10 @@ const defaultFormFields = {
 
 
 const SignUp = () => {
+
+  // getting the URL path from router
+
+  const navigate = useNavigate();
 
   const [formFields, setFormFields] = useState(defaultFormFields);
 
@@ -45,16 +51,37 @@ const SignUp = () => {
       
       await createUserDocFromAuth(user, {displayName});
 
+      navigate("/");
+      
       resetFormFields();
+      
+      enqueueSnackbar("Account created successfully", {
+        variant: "success",
+      })
 
+      
     } catch (error) {
-      if(error.code === "auth/email-already-in-use") {
-        console.log("Cannot create user, email already in use");
+
+      // run it as a switch case
+      switch(error.code){
+        case "auth/email-already-in-use":
+          enqueueSnackbar("Sorry that email is already in use", {
+            variant: "error",
+            autoHideDuration: 5000
+          })
+          break;
+        case "auth/weak-password":
+          enqueueSnackbar("Password must be at least 6 characters", {
+            variant: "error",
+            autoHideDuration: 5000
+          })
+          break;
+        default:
+          enqueueSnackbar("sorry, there was an error creating your account", {
+            variant: "error",
+            autoHideDuration: 5000
+          })
       }
-      else if(error.code === "auth/weak-password") {
-        console.log("Password must be at least 6 characters");
-      }
-      console.error("Sorry there was an error", error.message)
     }
   }
 
@@ -71,6 +98,7 @@ const SignUp = () => {
           type="text"
           value={displayName}
           onChange={handleChange}
+          required
         />
 
         <FormInput 
@@ -79,6 +107,7 @@ const SignUp = () => {
           type="email"
           value={email}
           onChange={handleChange}
+          required
         />        
         <FormInput 
           label="Password"
@@ -86,6 +115,7 @@ const SignUp = () => {
           type="password"
           value={password}
           onChange={handleChange}
+          required
         />
 
         <FormInput 
@@ -94,6 +124,7 @@ const SignUp = () => {
           type="password" 
           value={confirmPassword}
           onChange={handleChange}
+          required
         />
 
         <Button type="submit">Sign Up</Button>

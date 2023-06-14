@@ -15,6 +15,8 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  console.log(currentUser);
+
   const value = {
     currentUser,
     setCurrentUser,
@@ -26,6 +28,7 @@ export const UserProvider = ({ children }) => {
     const unsubscribe = onAuthStateChangedListener((user) => {
 
       setCurrentUser(user);
+
     })
     return unsubscribe;
   }, [])

@@ -22,23 +22,33 @@ const router = createBrowserRouter(
 
 const App = () => {
 
-  const snackbarVariantStyle = {
-    success: { 
-      backgroundColor: '#4caf50' 
-    }, 
-    error: { 
-      backgroundColor: '#f44336' 
-    }, 
-    warning: { 
-      backgroundColor: '#ff9800' 
-    }, 
-    info: { 
-      backgroundColor: "#2196f5",
-      fontWeight: 'lighter', 
-      color:'#000000',
-    } 
+  const theme = {
+    success: {
+      main: '#4caf50',
+      dark: '#388e3c',
+      light: '#c8e6c9',
+      variant: '#333',
+    },
+    error: {
+      main: '#f44336',
+      dark: '#d32f2f',
+      light: '#ef9a9a',
+      variant: '#fff',
+    },
+    warning: {
+      main: '#ff9800',
+      dark: '#f57c00',
+      light: '#ffe0b2',
+      variant: '#333',
+    },
+    info: {
+      main: '#2196f3',
+      dark: '#1976d2',
+      light: '#90caf9',
+      variant: '#000',
+    },
   };
-  
+    
 
   return (
     <SnackbarProvider
@@ -47,8 +57,7 @@ const App = () => {
         vertical: 'top',
         horizontal: 'center',
       }}
-      preventDuplicate
-      variant={snackbarVariantStyle}
+      theme={theme}
     >
       <RouterProvider router={router} />
     </SnackbarProvider>

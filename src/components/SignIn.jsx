@@ -33,7 +33,7 @@ const SignIn = () => {
   const signInWithGoogle = async () => {
     const {user} = await signInWithGooglePopup();
     await createUserDocFromAuth(user);
-    enqueueSnackbar("Logged in successful", {variant: "success", autoHideDuration: 3000})
+    enqueueSnackbar("Log in successful", {variant: "success", autoHideDuration: 3000})
   }
 
   const resetFormFields = () => {
@@ -47,14 +47,11 @@ const SignIn = () => {
       
       await signInAuthUserWithEmailAndPassword(email, password);
       
-      
-      
       resetFormFields()
 
-      enqueueSnackbar("Logged in successful", {variant: "success", autoHideDuration: 3000})
-      
       navigate("/");
-
+      
+      enqueueSnackbar("Log in successful", {variant: "success", autoHideDuration: 2000})
 
     }
     catch (error) {
