@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { CartContext } from "../context/cartContext";
 
 const CheckoutItem = ({checkOutItem}) => {
   const {name, price, quantity, imageUrl} = checkOutItem 
 
-  const {increaseQuantity} = useContext(UserContext)
+  const {addItemToCart, removeItemFromCart} = useContext(CartContext)
 
   const totalPrice = price * quantity;
 
@@ -12,12 +12,12 @@ const CheckoutItem = ({checkOutItem}) => {
     <div>
       <img src={imageUrl} alt={`${name}`}/>
       <div>
-        <span > minus </span>
+        <span onClick={() => removeItemFromCart(checkOutItem)} > Decrement </span>
         <span>{quantity}</span>
-        <span onClick={increaseQuantity}> plus </span>
+        <span onClick={() => addItemToCart(checkOutItem)}> Increment </span>
       </div>
       <div>{totalPrice}</div>
-      <button>remove</button>
+      <button >remove</button>
     </div>
   )
 }

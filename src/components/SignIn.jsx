@@ -1,4 +1,6 @@
-import {  useState } from "react";
+import { enqueueSnackbar } from "notistack"
+import {   useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import { UserContext } from "../context/UserContext";
 
 import { createUserDocFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../utilities/firebase";
@@ -14,20 +16,24 @@ const defaultFormFields = {
   password: '',
 }
 
+
 // form component starts
+
 const SignIn = () => {
+
+  const navigate = useNavigate()
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   // destructure form fields
   const { email, password } = formFields;
 
   // importing contexts
-  // const { setCurrentUser } = useContext(UserContext);
 
   
   const signInWithGoogle = async () => {
     const {user} = await signInWithGooglePopup();
     await createUserDocFromAuth(user);
+    enqueueSnackbar("Logged in successful", {variant: "success", autoHideDuration: 3000})
   }
 
   const resetFormFields = () => {
@@ -38,9 +44,17 @@ const SignIn = () => {
     event.preventDefault();
     
     try {
+      
       await signInAuthUserWithEmailAndPassword(email, password);
       
+      
+      
       resetFormFields()
+
+      enqueueSnackbar("Logged in successful", {variant: "success", autoHideDuration: 3000})
+      
+      navigate("/");
+
 
     }
     catch (error) {
@@ -94,6 +108,7 @@ const SignIn = () => {
           type="email"
           value={email}
           onChange={handleChange}
+          required
         />
         <FormInput
           label="Password"
@@ -101,6 +116,7 @@ const SignIn = () => {
           type="password"
           value={password}
           onChange={handleChange}
+          required
         />
         <div className="buttons-container">
           <Button type="submit"  onClick={()=>{}}>Sign in</Button>

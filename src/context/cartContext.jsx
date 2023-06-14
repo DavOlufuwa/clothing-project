@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { enqueueSnackbar } from "notistack";
 import { createContext, useEffect, useState } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
@@ -12,9 +13,30 @@ const addCartItem = (cartItems, productToAdd) => {
     : cartItem
     )
   }
+  enqueueSnackbar(`${productToAdd.name} has been added to the cart`, {variant: "info", autoHideDuration: 3000})
+
 
   // if the product does not exist in the array do this
   return [...cartItems, {...productToAdd, quantity: 1}]
+}
+
+
+const removeCartItem = (cartItems, cartItemToRemove) => {
+  // find the cart item to remove
+  const existingCartItem = cartItems.find((cartItem) => cartItem.id === cartItemToRemove.id)
+
+  // check if quantity is equal to 1, if it is remove that item from the cart
+  if(existingCartItem.quantity === 1){
+
+    enqueueSnackbar(`${cartItemToRemove.name} has been removed from the  cart`, {variant: "error", autoHideDuration: 3000})
+
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id)
+  }
+  // return back cartItems with matching cart item with reduced quantity
+  return cartItems.map((cartItem) => cartItem.id === cartItemToRemove.id 
+  ? {...cartItem, quantity: cartItem.quantity - 1}
+  : cartItem
+  )
 }
 
 
@@ -26,8 +48,8 @@ export const CartContext = createContext({
   setCartItems: () => null,
   addItemToCart: () => {},
   totalQuantity: 0,
-  increaseQuantity: () => {},
-
+  removeItemFromCart: () => {},
+  
 })
 
 export const CartProvider = ({ children }) => {
@@ -45,16 +67,17 @@ export const CartProvider = ({ children }) => {
     setTotalQuantity(newTotalQuantity)
   }, [cartItems])
 
-  const increaseQuantity = (productToAdd) => {
-    productToAdd.quantity += 1;
-  }
-  
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   }
+  const removeItemFromCart = (cartItemToRemove) => {
+    setCartItems(removeCartItem(cartItems, cartItemToRemove));
+  }
+
+
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, isCartOpen, setIsCartOpen, addItemToCart , totalQuantity, increaseQuantity}}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ cartItems, setCartItems, isCartOpen, setIsCartOpen, addItemToCart , totalQuantity, removeItemFromCart }}>{children}</CartContext.Provider>
   )
 }

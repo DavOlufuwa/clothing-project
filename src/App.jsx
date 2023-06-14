@@ -5,6 +5,7 @@ import Authentication from "./routes/Authentication/Authentication"
 import Recovery from "./routes/Recovery/Recovery"
 import Shop from "./routes/Shop/Shop"
 import Checkout from "./routes/Checkout/Checkout"
+import { SnackbarProvider } from "notistack"
 
 
 const router = createBrowserRouter(
@@ -20,8 +21,37 @@ const router = createBrowserRouter(
 )
 
 const App = () => {
+
+  const snackbarVariantStyle = {
+    success: { 
+      backgroundColor: '#4caf50' 
+    }, 
+    error: { 
+      backgroundColor: '#f44336' 
+    }, 
+    warning: { 
+      backgroundColor: '#ff9800' 
+    }, 
+    info: { 
+      backgroundColor: "#2196f5",
+      fontWeight: 'lighter', 
+      color:'#000000',
+    } 
+  };
+  
+
   return (
-    <RouterProvider router={router} />
+    <SnackbarProvider
+      maxSnack={2}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      preventDuplicate
+      variant={snackbarVariantStyle}
+    >
+      <RouterProvider router={router} />
+    </SnackbarProvider>
   )
 }
 
