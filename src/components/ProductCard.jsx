@@ -19,7 +19,7 @@ const ProductCard = ({product}) => {
 
   return (
     <div className='product-card-container'>
-      <FavoriteIcon onClick={addProductToFavorites} />
+      <FavoriteIcon onClick={addProductToFavorites}><span>&#10084;</span></FavoriteIcon>
       <img src={imageUrl} alt={`${name}`}/>
       <div className="footer">
         <span className="name">{name}</span>

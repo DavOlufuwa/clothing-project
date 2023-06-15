@@ -1,18 +1,13 @@
 .favorite-icon{
   background: #fff;
-  display: flex;
   border: 1px solid black;
-  max-width: max-content;
   border-radius: 50%;
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  
+  font-size: 24px;
+  padding: 4px 8px 6px; 
   
   span {
-    font-size: 24px;
-    color: #000;
-    margin: 10px 2px 8px 2px;
+    color: #000;  
   }
 
   &:hover {
@@ -27,9 +22,7 @@
 
 @media screen and (min-width: 768px) {
   .favorite-icon{
-    span{
-      font-size: 26px;
-      margin: 4px 2px;
-    }
+    font-size: 26px; 
+    padding: 0px 6px;
   }
 }

@@ -54,9 +54,6 @@ export const FavoritesProvider = ({ children }) => {
     setFavorites(removeFavorite(favorites, productToRemove));
   }
 
-
-  console.log(favorites)
-
   const values = {
     favorites,
     setFavorites,

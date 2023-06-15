@@ -20,7 +20,10 @@
   }
 
   .favorite-icon{
-    display: none;
+    position: absolute;
+    z-index: 100;
+    right: 10px;
+    top: 10px;
   }
 
   @media(hover:hover) {

@@ -1,9 +1,9 @@
 import '../styles/favorite-icon.styles.scss'
-const FavoriteButton = ({...otherProps}) => {
+const FavoriteButton = ({children, ...otherProps}) => {
   return (
-    <button className="favorite-icon" {...otherProps}>
-      <span>&#10084;</span>
-    </button>
+    <div className="favorite-icon" {...otherProps}>
+      {children}
+    </div>
   )
 }
 
