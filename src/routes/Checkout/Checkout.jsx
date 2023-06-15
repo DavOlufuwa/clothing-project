@@ -23,7 +23,6 @@ const Checkout = () => {
       </div>
     )
 
-
   return (
     <div className='checkout-container'>
       <div className='checkout-header'>

@@ -9,7 +9,7 @@ const addFavorite = (favorites, productToFavorite = {}) => {
 
   // if the product exists in the favorites array
   if(existingProduct){
-    enqueueSnackbar(`${productToFavorite.name} already exists in favorites`, {variant: "info", autoHideDuration: 3000})
+    enqueueSnackbar(`${productToFavorite.name} already exists in favorites`, {variant: "warning", autoHideDuration: 2000})
     return favorites;
   }
 

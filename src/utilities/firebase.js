@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 // import googlesignin, redirectsignin, auth, googleauth
 import {  createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
 // import firestore
-import { getFirestore, doc, setDoc, getDoc, collection, writeBatch } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
 import { enqueueSnackbar } from "notistack";
 
 
@@ -91,6 +91,31 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
   const collectionRef = collection(db, collectionKey);
   // a transaction is a word that represents a successful unit of work to a database
   // a unit of work might be multiple sets of operations(numerous writes)
+
+  // how to use batch
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach(object => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  })
+
+  await batch.commit();  
+}
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc; 
+  }, {});
+
+  return categoryMap;
 }
 
 

@@ -1,40 +1,36 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 
-// import SHOP_DATA from '../resources/shop-data.js';
-// import SHOP_DATA from '../resources/shop-data.json';
 import { getCategoriesAndDocuments } from "../utilities/firebase.js";
 
 
 getCategoriesAndDocuments
-export const ProductsContext = createContext({
+export const CategoriesContext = createContext({
   // initialization with initial state
-  products: [],
-  setProducts: () => null
+  categoriesMap: {},
+  setCategoriesMap: () => null
 });
 
-export const ProductsProvider = ({ children }) => {
+export const CategoriesProvider = ({ children }) => {
 
 
   // actual values
-  const [products, setProducts] = useState([]);
+  const [categoriesMap, setCategoriesMap] = useState({});
   // const [products, setProducts] = useState(SHOP_DATA);
 
   useEffect(() => {
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
-      
-      console.log(categoryMap);
+      setCategoriesMap(categoryMap);
     }
-
     getCategoriesMap();
   }, [])
 
 
   const values = {
-    products,
-    setProducts
+    categoriesMap,
+    setCategoriesMap
   }
 
-  return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>
+  return <CategoriesContext.Provider value={values}>{children}</CategoriesContext.Provider>
 }

@@ -5,13 +5,13 @@ import { CategoriesContext } from '../../context/categoriesContext';
 import CategoryPreview from '../../components/CategoryPreview';
 // import { ProductsContext } from '../../context/productsContext';
 
-const Shop = () => {
+const Category = () => {
 
   // const { products } = useContext(ProductsContext);
   const { categoriesMap } = useContext(CategoriesContext)
 
   return (
-    <div className='shop-container'>
+    <div>
     {      
       Object.keys(categoriesMap).map((title) => {
         const products = categoriesMap[title];
@@ -25,4 +25,4 @@ const Shop = () => {
   )
 }
 
-export default Shop
+export default Category

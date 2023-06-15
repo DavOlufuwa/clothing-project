@@ -32,6 +32,7 @@ const App = () => {
         horizontal: 'center',
       }}
       style={{
+        fontSize: '18px',
         fontWeight : '300',
         color: 'black',
         letterSpacing: '1px',
