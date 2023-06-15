@@ -1,3 +1,7 @@
+h2{
+  text-transform: capitalize;
+  font-size: 26px;
+}
 .category-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
