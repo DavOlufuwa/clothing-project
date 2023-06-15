@@ -24,43 +24,20 @@ const router = createBrowserRouter(
 
 const App = () => {
 
-  const theme = {
-    success: {
-      main: '#4caf50',
-      dark: '#388e3c',
-      light: '#c8e6c9',
-      variant: '#333',
-    },
-    error: {
-      main: '#f44336',
-      dark: '#d32f2f',
-      light: '#ef9a9a',
-      variant: '#fff',
-    },
-    warning: {
-      main: '#ff9800',
-      dark: '#f57c00',
-      light: '#ffe0b2',
-      variant: '#333',
-    },
-    info: {
-      main: '#2196f3',
-      dark: '#1976d2',
-      light: '#90caf9',
-      variant: '#000',
-    },
-  };
-    
-
   return (
     <SnackbarProvider
-      maxSnack={2}
+      maxSnack={3}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center',
       }}
       style={{
-        fontWeight : '200',
+        fontWeight : '300',
+        color: 'black',
+        letterSpacing: '1px',
+        border: '1px solid black',
+        borderRadius: '0',
+        boxShadow: 'none',
       }}
     >
       <RouterProvider router={router} />

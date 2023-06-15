@@ -3,7 +3,7 @@ import Button from './Button';
 import '../styles/product-card.styles.scss';
 import { useContext } from 'react';
 import { CartContext } from '../context/cartContext';
-import FavoriteIcon from './FavoriteIcon';
+import FavoriteIcon from './FavoriteButton';
 import { FavoritesContext } from '../context/favoritesContext';
 
 const ProductCard = ({product}) => {
@@ -13,11 +13,13 @@ const ProductCard = ({product}) => {
   const {name, price, imageUrl} = product;
 
   const addProductToCart = () => addItemToCart(product);
+  const addProductToFavorites = () => addItemToFavorites(product);
+
 
 
   return (
     <div className='product-card-container'>
-      <FavoriteIcon onClick={addItemToFavorites}/>
+      <FavoriteIcon onClick={addProductToFavorites} />
       <img src={imageUrl} alt={`${name}`}/>
       <div className="footer">
         <span className="name">{name}</span>

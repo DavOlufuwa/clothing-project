@@ -1,8 +1,7 @@
 import { useContext } from "react";
-import ProductCard from "../../components/ProductCard";
 import { FavoritesContext } from "../../context/favoritesContext";
-// import { ProductsContext } from "../../context/productsContext";
 import '../../styles/shop.styles.scss'
+import FavoriteCard from "../../components/FavoriteCard";
 
 
 const Favorites = () => {
@@ -10,10 +9,10 @@ const Favorites = () => {
   const { favorites } = useContext(FavoritesContext);
   
   return (
-    <div className='products-container'>
+    <div className='favorites-container'>
       {
-        favorites.map((favorite) => (
-          <ProductCard key={favorite.id} product={favorite} />
+        favorites.map((fav) => (
+          <FavoriteCard key={fav.id} favorite={fav} />
         ))
       }
     </div>

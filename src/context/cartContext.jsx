@@ -61,7 +61,7 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
-  const [favorites, setFavorites] = useState([])
+
     
   useEffect(() => {
     const newTotalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)

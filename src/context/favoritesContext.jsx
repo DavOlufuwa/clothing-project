@@ -3,15 +3,19 @@ import { enqueueSnackbar } from "notistack";
 import { createContext, useState } from "react";
 
 
-const addFavorite = (favorites, productToAdd) => {
+const addFavorite = (favorites, productToFavorite = {}) => {
+
+  const existingProduct = favorites.find((product) => product.id === productToFavorite.id)
+
   // if the product exists in the favorites array
-  if(favorites.find((product) => product.id === productToAdd.id)){
-    enqueueSnackbar(`${productToAdd.name} already exists in favorites`, {variant: "info", autoHideDuration: 3000})
+  if(existingProduct){
+    enqueueSnackbar(`${productToFavorite.name} already exists in favorites`, {variant: "info", autoHideDuration: 3000})
     return favorites;
   }
 
+  enqueueSnackbar(`${productToFavorite.name} has been added to favorites`, {variant: "info", autoHideDuration: 3000})
   // if the product does not exist in the favorites array do this
-  return [...favorites, productToAdd];
+  return [...favorites, productToFavorite];
 }
 
 const removeFavorite = (favorites, productToRemove) => {
@@ -35,6 +39,9 @@ export const FavoritesContext = createContext({
   removeItemFromFavorites: () => {},
 })
 
+  
+
+
 export const FavoritesProvider = ({ children }) => {
   
   const [favorites, setFavorites] = useState([]);
@@ -48,7 +55,7 @@ export const FavoritesProvider = ({ children }) => {
   }
 
 
-
+  console.log(favorites)
 
   const values = {
     favorites,

@@ -14,13 +14,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 <React.StrictMode>  
     <UserProvider>
-      <ProductsProvider>
-        <CartProvider>
-          <FavoritesProvider>
-            <App />
-          </FavoritesProvider>
-        </CartProvider>
-      </ProductsProvider>
+        <FavoritesProvider>
+          <ProductsProvider>
+            <CartProvider>
+              <App />
+            </CartProvider>
+          </ProductsProvider>
+        </FavoritesProvider>
     </UserProvider>
   </React.StrictMode>,
 )
