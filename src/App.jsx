@@ -7,6 +7,8 @@ import Shop from "./routes/Shop/Shop"
 import Checkout from "./routes/Checkout/Checkout"
 import Favorites from "./routes/Favorites/Favorites"
 import { SnackbarProvider } from "notistack"
+import CategoryList from "./routes/CategoryList/CategoryList"
+import Category from "./routes/Category/Category"
 
 
 const router = createBrowserRouter(
@@ -16,7 +18,10 @@ const router = createBrowserRouter(
       <Route path="authentication" element={<Authentication />}/>
       <Route path="favorites" element={<Favorites />}/>
       <Route path="recovery" element={<Recovery />}/>
-      <Route path="shop" element={<Shop />}/>
+      <Route path="shop" element={<Shop />}>
+        <Route index element={<CategoryList />} />
+        <Route path=":category" element={<Category />}/>
+      </Route>
       <Route path="checkout" element={<Checkout />}/>
     </Route>
   )
