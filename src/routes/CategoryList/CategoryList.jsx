@@ -5,7 +5,7 @@ import { CategoriesContext } from '../../context/categoriesContext';
 import CategoryPreview from '../../components/CategoryPreview';
 // import { ProductsContext } from '../../context/productsContext';
 
-const Category = () => {
+const CategoryList = () => {
 
   // const { products } = useContext(ProductsContext);
   const { categoriesMap } = useContext(CategoriesContext)
@@ -25,4 +25,4 @@ const Category = () => {
   )
 }
 
-export default Category
+export default CategoryList
