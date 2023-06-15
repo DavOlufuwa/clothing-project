@@ -14,7 +14,7 @@ const FavoriteCard = ({favorite}) => {
 
   return (
     <div className='favorite-card-container'>
-      <FavoriteButton>
+      <FavoriteButton onClick={()=> removeItemFromFavorites(favorite)}>
         <span className='close'>&#10006;</span>
       </FavoriteButton>
       <img src={imageUrl} alt={`${name}`}/>
