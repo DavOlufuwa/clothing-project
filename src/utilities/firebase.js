@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 // import googlesignin, redirectsignin, auth, googleauth
 import {  createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
 // import firestore
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, collection, writeBatch } from "firebase/firestore";
 import { enqueueSnackbar } from "notistack";
 
 
@@ -83,6 +83,22 @@ export const signOutUser = async () => {
     variant: 'success',
   })
 }
+
+// a method that allows us to upload categories from the shop data into firestore collections
+// collection allows use to connect to a collection
+// collection key is the name of the collection we are referring to
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  // a transaction is a word that represents a successful unit of work to a database
+  // a unit of work might be multiple sets of operations(numerous writes)
+}
+
+
+
+
+
+
+
 // function to observe signIn and signOut states
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
 

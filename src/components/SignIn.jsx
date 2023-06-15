@@ -59,13 +59,13 @@ const SignIn = () => {
       // refactor to switch statement
       switch(error.code){
         case "auth/user-not-found":
-          console.log(`The account at ${email} does not exist, please create an account`);
+          enqueueSnackbar(`The account with this email does not exist`, {variant: "error", autoHideDuration: 3000})
           break;
         case "auth/wrong-password":
-          console.log("Incorrect Password for Email");
+          enqueueSnackbar("Incorrect Password please try again", {variant: "error", autoHideDuration: 3000})
           break;
         default:
-          console.log("sorry, there was an error", error.message);
+          enqueueSnackbar("An unexpected error occurred", {variant: "error", autoHideDuration: 3000})
       }
     }
   }

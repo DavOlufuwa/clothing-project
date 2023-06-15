@@ -36,8 +36,8 @@ const Navigation = () => {
             </Link>
           )
         }
-        <Link to="recovery" className='nav-link'>
-          Recover Password
+        <Link to="favorites" className='nav-link'>
+          Favorites
         </Link>
         <Link to="shop" className='nav-link'>
           Shop

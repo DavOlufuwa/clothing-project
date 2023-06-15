@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 
-import PRODUCTS from '../resources/shop-data.json';
+// import SHOP_DATA from '../resources/shop-data.js';
+import SHOP_DATA from '../resources/shop-data.json';
 
 export const ProductsContext = createContext({
   // initialization with initial state
@@ -12,7 +13,8 @@ export const ProductsContext = createContext({
 export const ProductsProvider = ({ children }) => {
 
   // actual values
-  const [products, setProducts] = useState(PRODUCTS);
+  // const [products, setProducts] = useState([SHOP_DATA]);
+  const [products, setProducts] = useState(SHOP_DATA);
 
   const values = {
     products,
