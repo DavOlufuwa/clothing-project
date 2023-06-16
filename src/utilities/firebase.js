@@ -80,7 +80,7 @@ export const signOutUser = async () => {
   await signOut(auth);
 
   enqueueSnackbar('You have been signed out', {
-    variant: 'success',
+    variant: 'warning',
   })
 }
 

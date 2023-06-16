@@ -1,6 +1,6 @@
 import { enqueueSnackbar } from "notistack"
 import {   useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 // import { UserContext } from "../context/UserContext";
 
 import { createUserDocFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../utilities/firebase";
@@ -29,11 +29,13 @@ const SignIn = () => {
 
   // importing contexts
 
+
   
   const signInWithGoogle = async () => {
     const {user} = await signInWithGooglePopup();
     await createUserDocFromAuth(user);
     enqueueSnackbar("Log in successful", {variant: "success", autoHideDuration: 3000})
+    navigate(-1);
   }
 
   const resetFormFields = () => {
@@ -49,7 +51,7 @@ const SignIn = () => {
       
       resetFormFields()
 
-      navigate("/");
+      navigate(-1);
       
       enqueueSnackbar("Log in successful", {variant: "success", autoHideDuration: 2000})
 

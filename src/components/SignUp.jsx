@@ -51,13 +51,13 @@ const SignUp = () => {
       
       await createUserDocFromAuth(user, {displayName});
 
-      navigate("/");
-      
       resetFormFields();
       
       enqueueSnackbar("Account created successfully", {
         variant: "success",
       })
+
+      navigate(-1);
 
       
     } catch (error) {
