@@ -17,7 +17,7 @@ const Favorites = () => {
         YOU DO NOT HAVE ANY FAVORITES
       </div>
       <div>
-        <Button onClick={() => navigate('/')}>Continue Shopping</Button>
+        <Button onClick={() => navigate(-1)}>Continue Shopping</Button>
       </div>
     </div>
   )
