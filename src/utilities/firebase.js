@@ -8,6 +8,7 @@ import { enqueueSnackbar } from "notistack";
 
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDG5KNDBGBWCcdldff8Rgg-R4Xei7OSUYk",
   authDomain: "crownapp-897ae.firebaseapp.com",
@@ -25,7 +26,6 @@ const googleProvider = new GoogleAuthProvider();
 
 
 
-
 googleProvider.setCustomParameters({
   prompt: "select_account"
 });
@@ -33,7 +33,9 @@ googleProvider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
-export const db = getFirestore();
+export const db = getFirestore(app);
+
+
 
 // creating a user document after google signin authentication
 export const createUserDocFromAuth = async (userAuth, additionalInformation = {}) => {
