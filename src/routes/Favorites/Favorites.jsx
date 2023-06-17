@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FavoritesContext } from "../../context/favoritesContext";
+import { FavoritesContext } from "../../contexts/favoritesContext";
 import '../../styles/shop.styles.scss'
 import FavoriteCard from "../../components/FavoriteCard";
 import Button from "../../components/Button";

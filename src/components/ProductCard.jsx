@@ -2,9 +2,9 @@
 import Button from './Button';
 import '../styles/product-card.styles.scss';
 import { useContext } from 'react';
-import { CartContext } from '../context/cartContext';
+import { CartContext } from '../contexts/cartContext';
 import FavoriteIcon from './FavoriteButton';
-import { FavoritesContext } from '../context/favoritesContext';
+import { FavoritesContext } from '../contexts/favoritesContext';
 
 const ProductCard = ({product}) => {
   

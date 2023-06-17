@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { CartContext } from '../context/cartContext'
+import { CartContext } from '../contexts/cartContext'
 import cartIcon from '../resources/shopping-bag.svg'
 import '../styles/cart-icon.styles.scss'
 

@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../context/cartContext';
+import { CartContext } from '../contexts/cartContext';
 import '../styles/cart-dropdown.styles.scss';
 import Button from './Button';
 import CartItem from './CartItem';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../contexts/UserContext';
 import { enqueueSnackbar } from 'notistack';
 
 

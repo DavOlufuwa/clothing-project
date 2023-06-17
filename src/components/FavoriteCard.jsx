@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import  { useContext } from 'react'
 import Button from './Button'
-import { CartContext } from '../context/cartContext';
+import { CartContext } from '../contexts/cartContext';
 import '../styles/favorite-card.styles.scss'
 import FavoriteButton from './FavoriteButton';
-import { FavoritesContext } from '../context/favoritesContext';
+import { FavoritesContext } from '../contexts/favoritesContext';
 
 const FavoriteCard = ({favorite}) => {
   const {name, price, imageUrl,} = favorite;

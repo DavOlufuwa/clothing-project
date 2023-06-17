@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
-import { CartContext } from "../context/cartContext";
+import { CartContext } from "../contexts/cartContext";
 import '../styles/checkout-item.styles.scss';
 
 const CheckoutItem = ({checkOutItem}) => {

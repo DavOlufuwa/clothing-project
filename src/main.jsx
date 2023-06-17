@@ -2,10 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { CartProvider } from './context/cartContext.jsx'
-import { CategoriesProvider } from './context/categoriesContext.jsx'
-import { FavoritesProvider } from './context/favoritesContext.jsx'
-import { UserProvider } from './context/UserContext.jsx'
+import { CartProvider } from './contexts/cartContext.jsx'
+import { CategoriesProvider } from './contexts/categoriesContext.jsx'
+import { FavoritesProvider } from './contexts/favoritesContext.jsx'
+import { UserProvider } from './contexts/UserContext.jsx'
 import './index.scss'
 
 UserProvider
