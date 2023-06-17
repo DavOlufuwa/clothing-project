@@ -4,7 +4,7 @@ import { CartContext } from '../contexts/cartContext';
 import '../styles/cart-dropdown.styles.scss';
 import Button from './Button';
 import CartItem from './CartItem';
-import { UserContext } from '../contexts/UserContext';
+import { UserContext } from '../contexts/tuserContext';
 import { enqueueSnackbar } from 'notistack';
 
 
