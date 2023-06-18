@@ -9,7 +9,7 @@
 
   .image-container {
     width: 23%;
-    padding-right: 15px;
+    padding-right: 12px;
 
     img {
       width: 100%;
@@ -17,13 +17,20 @@
     }
   }
   .name,
-  .quantity,
+  .quantity
+  {
+    width: 24%;
+  }
   .price {
     width: 23%;
+    text-align: center;
   }
 
   .quantity {
     display: flex;
+    align-items: center;
+    gap: 7px;  
+    padding-left: 6px; 
 
     .arrow {
       cursor: pointer;
@@ -37,5 +44,40 @@
   .remove-button {
     padding-left: 12px;
     cursor: pointer;
+    font-weight: 900;
+  }
+}
+
+@media screen and (min-width:500px){
+  .checkout-item-container{
+    .quantity{
+      
+      justify-content: space-between;
+      padding-left: 10px;
+      width: 20%;
+    }
+
+    .remove-button{
+      text-align: center;
+    }
+  }
+
+}
+
+@media screen and (min-width:900px) {
+  .checkout-item-container{
+    justify-content: space-between;
+    .quantity{
+      
+      padding-left: 10px;
+      width: 20%;
+    }
+    .price{
+      width: 20%;
+    }
+    .remove-button{
+      width: 10%;
+      text-align: center;
+    }
   }
 }

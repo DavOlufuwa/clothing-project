@@ -7,20 +7,32 @@
 
   .logo-container {
     height: 100%;
-    width: 70px;
-    padding: 25px;
+    width: 50px;
+    padding: 20px;
   }
 
   .nav-links-container {
-    width: 50%;
+    width: 70%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 
     .nav-link {
-      padding: 10px 15px;
+      padding: 10px 10px;
       cursor: pointer;
+    }
+  }
+}
+
+
+@media screen and (min-width: 700px) {
+  .navigation {
+    .nav-links-container {
+      justify-content: flex-end;
+      .nav-link{
+        padding: 10px 20px;
+      }
     }
   }
 }

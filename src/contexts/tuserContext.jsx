@@ -15,8 +15,7 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  console.log(currentUser);
-
+  
   const value = {
     currentUser,
     setCurrentUser,
