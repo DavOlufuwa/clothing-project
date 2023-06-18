@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { enqueueSnackbar } from "notistack";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
   // if the product exists in the cart array
@@ -56,8 +56,40 @@ export const CartContext = createContext({
   
 })
 
+const initial_State = {
+  cartItems : []
+}
+
+export const CART_ACTION_TYPES = {
+  SET_CART_ITEMS : 'SET_CART_ITEMS',
+}
+
+const cartReducer = (state, action) => {
+  const {type, payload} = action;
+
+  switch(type){
+
+    case CART_ACTION_TYPES.SET_CART_ITEMS:
+      return {
+        ...state,
+        cartItems: payload
+      }
+
+    default:
+      throw new Error('unhandled type in cartReducer')
+  }
+}
+
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  
+  const [{cartItems}, dispatch] = useReducer(cartReducer, initial_State) 
+  
+  const setCartItems = () => {
+    dispatch({type: CART_ACTION_TYPES.SET_CART_ITEMS, payload: cartItems})
+  }
+
+
+  // const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
