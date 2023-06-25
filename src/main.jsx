@@ -6,7 +6,7 @@ import { CartProvider } from './contexts/cartContext.jsx'
 import { CategoriesProvider } from './contexts/categoriesContext.jsx'
 import { FavoritesProvider } from './contexts/favoritesContext.jsx'
 import { UserProvider } from './contexts/tuserContext.jsx'
-import './index.scss'
+import './styles/index.scss'
 
 
 
