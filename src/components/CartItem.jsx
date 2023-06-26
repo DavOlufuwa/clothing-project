@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import '../styles/cart-item.styles.scss'
+import '../styles/cart-item.styles.scss';
 
-const CartItem = ({cartItem}) => {
+const CartItem = ({ cartItem }) => {
   const {name, imageUrl, quantity, price} = cartItem
 
   return (
@@ -13,7 +13,6 @@ const CartItem = ({cartItem}) => {
       </div>
     </div>
   )
-
 }
 
 export default CartItem

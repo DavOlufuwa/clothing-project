@@ -40,9 +40,9 @@ const PaymentForm = ({setModalOpen}) => {
     })
   }
 
-  const paymentHandler = async (e) => {
+  const paymentHandler = (e) => {
     e.preventDefault();
-    await callPaystack();
+    callPaystack();
   }
 
   return (
