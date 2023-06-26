@@ -7,48 +7,42 @@ import FormInput from "./FormInput";
 
 
 
+
 const PaymentForm = ({setModalOpen}) => {
  const [paymentResult, setPaymentResult] = useState({});
  const [buyerData, setBuyerData] = useState({
    buyerEmail: '',
  })
  
+
  const { buyerEmail } = buyerData
 
- const {cartItems, totalPrice} = useContext(CartContext);
+ const {totalPrice} = useContext(CartContext);
 
-
- const cartStuff = cartItems.map((item) => (
-  `${item.price}, ${item.name}, ${item.quantity} \n`
-))
-
+  const callPaystack = () => {
+    fetch('https://api.paystack.co/transaction/initialize', {
+     method: 'POST',
+     headers: {
+       'Authorization': `Bearer ${import.meta.env.VITE_PAYSTACK_SECRET_KEY}`,
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+       email: buyerEmail, 
+       amount: totalPrice * 100,
+       channels: ["card", "bank", "qr", "ussd"],
+       metadata: {
+         "cancel_action": "https://crown-storex.netlify.app",
+       }
+     }),
+    }).then((res) => res.json())
+    .then((data) => {
+      location.href = data.data.authorization_url;
+    })
+  }
 
   const paymentHandler = async (e) => {
-
     e.preventDefault();
-    
-    const response = await fetch('https://api.paystack.co/transaction/initialize', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_PAYSTACK_SECRET_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: buyerEmail, 
-        amount: totalPrice * 100,
-        channels: ["card", "bank", "qr", "ussd"],
-        metadata: {
-          "cancel_action": "https://crown-storex.netlify.app",
-          "cart_items": cartStuff,
-        }
-      })
-    })
-    .then((res) => res.json())
-
-
-    setPaymentResult(response.data);
-
-    if(paymentResult.authorization_url)window.location.href = paymentResult.authorization_url;
+    await callPaystack();
   }
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import '../styles/button.styles.scss';
 
 const button_type_classes ={
