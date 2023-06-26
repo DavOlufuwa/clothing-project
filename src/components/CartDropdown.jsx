@@ -16,20 +16,20 @@ const CartDropdown = () => {
 
   const goToCheckOut = () => {
     // check if there is no User
-    if(currentUser === null) {
-      
-      navigate("authentication");
-      enqueueSnackbar("You must be logged in to checkout", {
-        variant: "warning",
-        autoHideDuration: 3000
-      })
-      setIsCartOpen(false)
+      if(currentUser === null) {
+
+        navigate("authentication");
+        enqueueSnackbar("You must be logged in to checkout", {
+          variant: "warning",
+          autoHideDuration: 3000
+        })
+        setIsCartOpen(false)
+      }
+      else{
+        navigate("checkout");
+        setIsCartOpen(false)
+      }
     }
-    else{
-      navigate("checkout");
-      setIsCartOpen(false)
-    }
-  }
 
   const {isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext)
 

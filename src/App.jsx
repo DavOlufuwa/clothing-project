@@ -18,7 +18,7 @@ const router = createBrowserRouter(
       <Route path="authentication" element={<Authentication />}/>
       <Route path="favorites" element={<Favorites />}/>
       <Route path="recovery" element={<Recovery />}/>
-      <Route path="shop" element={<Shop />}>
+      <Route path="shop/*" element={<Shop />}>
         <Route index element={<CategoryList />} />
         <Route path=":category" element={<Category />}/>
       </Route>

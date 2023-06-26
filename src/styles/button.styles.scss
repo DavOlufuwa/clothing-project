@@ -44,4 +44,15 @@
       border: none;
     }
   }
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: grey;
+  
+    &:hover {
+      background-color: grey;
+      color: white;
+      border: none;
+    }
+  }
 }

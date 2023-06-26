@@ -1,10 +1,14 @@
 .sign-up-container{
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 340px;
 
   h2{
     margin: 10px 0;
+  }
+
+  span{
+    text-align: center;
   }
 
   .buttons-container{

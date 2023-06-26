@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import '../styles/form-input.styles.scss';
 
 const FormInput = ({ label, ...otherProps }) => {
