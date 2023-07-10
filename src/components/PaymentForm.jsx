@@ -9,7 +9,6 @@ import FormInput from "./FormInput";
 
 
 const PaymentForm = ({setModalOpen}) => {
- const [paymentResult, setPaymentResult] = useState({});
  const [buyerData, setBuyerData] = useState({
    buyerEmail: '',
  })
